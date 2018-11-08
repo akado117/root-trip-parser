@@ -4,7 +4,9 @@
   "description": "A command line utility to parse a formatted input file into a consolidated output",
   "main": "src/index.js",
   "scripts": {
-    "test": "test"
+    "test": "jest",
+    "test:watch": "jest -o --watch",
+    "lint": "lint --fix"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/akado117/root-trip-parser/issues"
   },
-  "homepage": "https://github.com/akado117/root-trip-parser#readme"
+  "homepage": "https://github.com/akado117/root-trip-parser#readme",
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.27.1",
+    "jest": "^23.6.0"
+  }
 }

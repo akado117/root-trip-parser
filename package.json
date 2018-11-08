@@ -1,0 +1,22 @@
+{
+  "name": "root-trip-parser",
+  "version": "1.0.0",
+  "description": "A command line utility to parse a formatted input file into a consolidated output",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akado117/root-trip-parser.git"
+  },
+  "keywords": [
+    "root"
+  ],
+  "author": "Alex Kaidan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akado117/root-trip-parser/issues"
+  },
+  "homepage": "https://github.com/akado117/root-trip-parser#readme"
+}

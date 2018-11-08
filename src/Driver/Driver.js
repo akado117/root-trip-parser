@@ -31,6 +31,7 @@ class Driver {
       this._trips.push(trip);
       return true;
     } catch (e) {
+      console.log(e.message);
       return false;
     }
   }

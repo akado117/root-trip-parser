@@ -1,4 +1,22 @@
 # Root Driver Trip Consolidation Tool
+
+### How to use
+Clone this repo:
+```sh
+$ git clone https://github.com/akado117/root-trip-parser.git
+```
+Navigate to your newly cloned directory
+
+Install Node packages
+```sh
+$ npm install
+```
+
+Run the CLI program
+```sh
+$ node ./app.js <path-to-file>
+```
+
 ### Preproject Problem Break Down
 Input formatted driver data from file and output averages to new file. Should exclude "outlier" speeds aka average speeds under 5 MPH and over 100 MPH. 
 
@@ -8,6 +26,7 @@ Times should be standard but will validate accordingly
 All parsed time data will be stored as minutes.
 All distances are in miles.
 (Given) Time ranges are for a single day aka no 24 hour time wrap past midnight.
+When reporting, round distance and speed to nearest number
 Commands `Driver` and `Trip` are case sensitive
 File length and memory required will be manageable for a single Node runtime.
 User will have modern version of Node/NPM on their machine (node v8.x.x+).

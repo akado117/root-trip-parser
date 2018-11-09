@@ -12,7 +12,6 @@ let fileData = fs.readFileSync(filePath, 'utf-8');
 // Check if user is passing in an absolute path
 if (!fileData) fileData = fs.readFileSync(inputPath, 'utf-8');
 if (!fileData) return console.log('File not found. Please verify your path to file (accepts absolute and relative)');
-console.log(`File successfully read: ${inputPath}`);
 
 // Using regex to make end of line OS agnostic
 const splitFileRegex = new RegExp('\r\n|\r|\n', 'g');
@@ -35,4 +34,9 @@ const consolidatedDrivers = main.getDrivers().sort((a,b) => {
   return a.getTotalDistance() > b.getTotalDistance() ? -1 : 1;
 })
 
-console.log(consolidatedDrivers)
+for (const driver of consolidatedDrivers) {
+  const name = driver.getName();
+  const distance = Math.round(driver.getTotalDistance());
+  const speed = Math.round(driver.getAverageSpeed());
+  console.log(`${name}: ${distance} miles ${speed ? `@ ${speed} mph` : '' }`)
+}

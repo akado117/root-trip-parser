@@ -18,9 +18,9 @@ describe('Main class', () => {
   });
   describe('parseCommand', () => {
     test('should call _addDriver when driver command entered', () => {
-      const restoreFunc = stubPrototype(main, '_addDriver');
+      const restoreFunc = stubPrototype(Main, '_addDriver');
       try {
-        main._parseCommand('Driver Aslan');
+        main.parseCommand('Driver Aslan');
         expect(main._addDriver).toHaveBeenCalled();
 
         restoreFunc();
@@ -30,9 +30,9 @@ describe('Main class', () => {
       }
     });
     test('should call _addTripToDriver when trip command entered', () => {
-      const restoreFunc = stubPrototype(main, '_addTripToDriver');
+      const restoreFunc = stubPrototype(Main, '_addTripToDriver');
       try {
-        main._parseCommand('Trip Aslan 04:40 05:50 12');
+        main.parseCommand('Trip Aslan 04:40 05:50 12');
         expect(main._addTripToDriver).toHaveBeenCalled();
 
         restoreFunc();
@@ -63,24 +63,26 @@ describe('Main class', () => {
     test('should call addTrip on correct driver object', () => {
       const driver = new Driver('Aslan');
       main._drivers = { Aslan: driver };
+      driver.addTrip.mockImplementation(() => true);
       
       expect(main._addTripToDriver('Aslan', '05:30', '06:30', 12)).toEqual(true);
-      expect(driver._addDriver).toBeCalledWith('Aslan', '05:30', '06:30');
+      expect(driver.addTrip).toBeCalledWith('05:30', '06:30', 12);
     });
     test('should return false if valid driver doesn\'t exist', () => {
       const driver = new Driver('Jadis');
       main._drivers = { Jadis: driver };
+      driver.addTrip.mockImplementation(() => true);
       
       expect(main._addTripToDriver('Aslan', '05:30', '06:30', 12)).toEqual(false);
-      expect(driver._addDriver).toHaveBeenCalledTimes(0);
+      expect(driver.addTrip).toHaveBeenCalledTimes(0);
     });
     test('should return false if trip args are incorrect', () => {
       const driver = new Driver('Jadis');
       main._drivers = { Jadis: driver };
-      driver._addDriver.mockImplementation(() => false);
+      driver.addTrip.mockImplementation(() => false);
       
       expect(main._addTripToDriver('Aslan', '05:30', '06:30', 12)).toEqual(false);
-      expect(driver._addDriver).toHaveBeenCalledTimes(0);
+      expect(driver.addTrip).toHaveBeenCalledTimes(0);
     });
   });
   describe('getDrivers', () => {

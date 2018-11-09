@@ -14,9 +14,10 @@ User will have modern version of Node/NPM on their machine (node v8.x.x+).
 App is brittle and will throw errors when encountering incorrect input data.
 
 ##### Core Object Break Down
-`Drivers` should contain `Trips` and also track/update total drive time and miles. `Drivers` also should be able to return time/miles driven, and trips drive. Should include function to calculate and store average speed when called.
-`Trips` need to be able to parse drive time into time on road, and store it. It should also store distance driven.
-`Main` takes commands. Then parse data to build Drivers and add trips to drivers based upon commands. 
+Building the solution with objects to make code more organized. Will all run with an index.js that can parse command line args. If file found, load data and split it by new lines. Can then call api exposed by Main, and finally report after all commands parsed.
+`Drivers` should contain `Trips` and also track/update total drive time and miles as trips are added. `Drivers` also should be able to return time/miles driven, and trips driven and average speed. Should include function to calculate and store/return average speed when called.
+`Trips` need to be able to parse drive time into time on road, and store it. It should also store distance driven. Due to average speed limitations on a trip basis, an average speed calculate/store/return function should be here.
+`Main` takes commands. Then parse data to build Drivers and add trips to drivers based upon commands. Will need functionality to return drivers when requested
 
 - Driver 
 -- trips, total distance driven, and time driven, average speed - getters

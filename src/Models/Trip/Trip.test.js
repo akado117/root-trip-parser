@@ -1,5 +1,5 @@
 const Trip = require('./Trip');
-const { stubPrototype } = require('../helpers/testHelpers');
+const { stubPrototype } = require('../../helpers/testHelpers');
 
 describe('Trip Class', () => {
   let trip;

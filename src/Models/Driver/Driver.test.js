@@ -1,5 +1,5 @@
 const Driver = require('./Driver');
-const Trip = require('../Trip');
+const Trip = require('../Trip/index');
 
 jest.mock('../Trip');
 

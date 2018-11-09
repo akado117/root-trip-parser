@@ -1,4 +1,4 @@
-const Trip = require('../Trip');
+const Trip = require('../Trip/index');
 
 class Driver {
   constructor(name) {

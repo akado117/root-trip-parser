@@ -1,6 +1,6 @@
-const Driver = require('../Driver');
+const Driver = require('../Models/Driver');
 
-class Main {
+class DriverController {
   constructor() {
     this._drivers = {};
   }
@@ -37,4 +37,4 @@ class Main {
   }
 }
 
-module.exports = Main;
+module.exports = DriverController;

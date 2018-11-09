@@ -28,5 +28,9 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^21.27.1",
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
   }
 }

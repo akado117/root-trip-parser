@@ -32,9 +32,17 @@ describe('Driver Class', () => {
     });
   });
   describe('getAverageSpeed', () => {
-    test('should return averageSpeed for Driver', () => {
+    test('should return averageSpeed without recalculation when _isSpeedStale is false', () => {
       driver._averageSpeed = 123;
+      driver._isSpeedStale = false;
       expect(driver.getAverageSpeed()).toEqual(123);
+    });
+    test('should recalculate then store/return average speed if _isSpeedStale is true', () => {
+      driver._averageSpeed = 60;
+      driver._totalTime = 60;
+      driver._totalDistance = 60;
+      expect(driver.getAverageSpeed()).toEqual(60);
+      expect(driver._isSpeedStale).toEqual(false);
     });
   });
   describe('addTrip', () => {
@@ -43,15 +51,17 @@ describe('Driver Class', () => {
       expect(driver.addTrip('asdasd', '12:32', 123)).toEqual(false);
       expect(driver._trips.length).toEqual(0);
     });
-    test('should create a new trip object and add it to trips after adding time and distance to totalTime and Totaldistance', () => {
+    test('should create a new trip object and add it to trips after adding time and distance to totalTime and Totaldistance. Should also set _isSpeedStale to true', () => {
       Trip.mockImplementation(() => ({
         getDistance: jest.fn(() => 12),
         getDuration: jest.fn(() => 50),
         getAverageSpeed: jest.fn(() => 10),
       }));
+      driver._isSpeedStale = false;
       
       expect(driver.addTrip('12:00', '12:30', 123)).toEqual(true);
       
+      expect(driver._isSpeedStale).toEqual(true);
       expect(driver._trips.length).toEqual(1);
       expect(driver._trips[0].getDuration).toHaveBeenCalledTimes(1);
       expect(driver._trips[0].getDistance).toHaveBeenCalledTimes(1);
@@ -71,16 +81,6 @@ describe('Driver Class', () => {
 
       expect(driver.addTrip('12:00', '12:30', 123)).toEqual(false);
       expect(driver._trips.length).toEqual(0)
-    });
-  });
-  describe('calculateAverageSpeed', () => {
-    test('should update averageSpeed based upon current totalTime and totalDistance', () => {
-      driver._totalTime = 50;
-      driver._totalDistance = 213;
-
-      driver.calculateAverageSpeed();
-
-      expect(driver._averageSpeed).toEqual(213 / 50 * 60);
     });
   });
 });

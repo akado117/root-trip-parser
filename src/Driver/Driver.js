@@ -7,6 +7,7 @@ class Driver {
     this._averageSpeed = 0;
     this._totalDistance = 0;
     this._trips = [];
+    this._isSpeedStale = true;
   }
 
   getTotalDistance() {
@@ -15,10 +16,6 @@ class Driver {
 
   getTotalTime() {
     return this._totalTime;
-  }
-
-  getAverageSpeed() {
-    return this._averageSpeed;
   }
 
   addTrip(startTime, endTime, distance) {
@@ -33,6 +30,8 @@ class Driver {
       this._totalDistance += trip.getDistance();
 
       this._trips.push(trip);
+      this._isSpeedStale = true;
+
       return true;
     } catch (e) {
       console.log(e.message);
@@ -40,8 +39,12 @@ class Driver {
     }
   }
 
-  calculateAverageSpeed() {
-    this._averageSpeed = this._totalDistance / this._totalTime * 60;
+  getAverageSpeed() {
+    if (this._isSpeedStale) {
+      this._averageSpeed = this._totalDistance / this._totalTime * 60;
+      this._isSpeedStale = false;
+    }
+    return this._averageSpeed;
   }
 }
 

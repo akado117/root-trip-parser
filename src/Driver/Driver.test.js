@@ -5,18 +5,24 @@ jest.mock('../Trip');
 
 describe('Driver Class', () => {
   let driver;
+  const driverName = 'Alex'
   beforeEach(() => {
     Trip.mockClear();
-    driver = new Driver('Alex');
+    driver = new Driver(driverName);
   });
   describe('constructor', () => {
     test('should add drivers name to object and initialize average speed, total distance, and total time to zero', () => {
       // already constructed on every test run
-      expect(driver._name).toEqual('Alex');
+      expect(driver._name).toEqual(driverName);
       expect(driver._totalTime).toEqual(0);
       expect(driver._totalDistance).toEqual(0);
       expect(driver._averageSpeed).toEqual(0);
       expect(driver._trips).toEqual([]);
+    });
+  });
+  describe('getName', () => {
+    test('should return driver name', () => {
+      expect(driver.getName()).toEqual(driverName);
     });
   });
   describe('getTotalDistance', () => {
@@ -32,15 +38,18 @@ describe('Driver Class', () => {
     });
   });
   describe('getAverageSpeed', () => {
+    test('should return averageSpeed of 0 as default', () => {
+      expect(driver.getAverageSpeed()).toEqual(0);
+    });
     test('should return averageSpeed without recalculation when _isSpeedStale is false', () => {
       driver._averageSpeed = 123;
-      driver._isSpeedStale = false;
       expect(driver.getAverageSpeed()).toEqual(123);
     });
     test('should recalculate then store/return average speed if _isSpeedStale is true', () => {
       driver._averageSpeed = 60;
       driver._totalTime = 60;
       driver._totalDistance = 60;
+      driver._isSpeedStale = true;
       expect(driver.getAverageSpeed()).toEqual(60);
       expect(driver._isSpeedStale).toEqual(false);
     });

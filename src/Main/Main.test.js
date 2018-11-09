@@ -47,6 +47,7 @@ describe('Main class', () => {
       expect(main._addDriver('Aslan')).toEqual(true);
 
       expect(main._drivers.Aslan).toBe(Driver.mock.instances[0]);
+      expect(Driver).toBeCalledWith('Aslan');
       expect(Driver).toHaveBeenCalledTimes(1);
     });
     test('should return false if driver already exists and keep original driver', () => {

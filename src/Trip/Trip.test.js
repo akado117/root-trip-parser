@@ -74,12 +74,12 @@ describe('Trip Class', () => {
       }
     });
     test('should parse start/end time when its a simple hour subtraction', () => {
-      trip._parseTime('12:30', '13:30');
-      expect(trip._duration).toEqual(60);
+      const duration = trip._parseTime('12:30', '13:30');
+      expect(duration).toEqual(60);
     });
     test('should parse start/end time when its hour and minute subtraction', () => {
-      trip._parseTime('12:30', '13:15');
-      expect(trip._duration).toEqual(45);
+      const duration = trip._parseTime('12:30', '13:15');
+      expect(duration).toEqual(45);
     });
   });
   describe('getAverageSpeed', () => {

@@ -31,4 +31,8 @@ fileLines.forEach((fileLine, idx) => {
 })
 
 /* Report after parsing */
+const consolidatedDrivers = main.getDrivers().sort((a,b) => {
+  return a.getTotalDistance() > b.getTotalDistance() ? -1 : 1;
+})
 
+console.log(consolidatedDrivers)

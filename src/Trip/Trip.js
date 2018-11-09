@@ -12,7 +12,7 @@ class Trip {
     this._duration = this._parseTime(start, end);
     this._startTime = start;
     this._endTime = end;
-    this._distance = distance;
+    this._distance = parseFloat(distance);
   }
 
   _parseTime(start, end) {
@@ -24,7 +24,7 @@ class Trip {
     if (msOfDuration < 0) throw new Error('Please use end times after start times');
 
     // ms to minutes
-    this._duration = msOfDuration / 60000;
+    return msOfDuration / 60000;
   }
   
   getDuration() {

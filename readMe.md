@@ -15,7 +15,7 @@ App is brittle and will throw errors when encountering incorrect input data.
 
 ##### Core Object Break Down
 Building the solution with objects to make code more organized. Will all run with an app.js that can parse command line args. If file found, load data and split it by new lines. Can then call api exposed by Main, and finally report after all commands parsed.
-`Drivers` should contain `Trips` and also track/update total drive time and miles as trips are added. `Drivers` also should be able to return time/miles driven, and trips driven and average speed. Should include function to calculate and store/return average speed when called.
+`Drivers` should store name and contain `Trips`. Should track/update total drive time and miles as trips are added. `Drivers` also should be able to return time/miles driven, trips, name, and average speed. Should include function to calculate and store/return average speed when called. 
 `Trips` need to be able to parse drive time into time on road, and store it. It should also store distance driven. Due to average speed limitations on a trip basis, an average speed calculate/store/return function should be here.
 `Main` takes commands. Then parse data to build Drivers and add trips to drivers based upon commands. Will need functionality to return drivers when requested
 
@@ -41,3 +41,4 @@ Building the solution with objects to make code more organized. Will all run wit
 - Breaking out parseCommand so it can call seperate functions within main from itself. `_addDriver` and `_addTripToDriver`
 - Added `getAverageSpeed` to `Trip`
 - Removing calculateAverageSpeed and combining with getAverageSpeed
+- Added in name getter for `Driver`...

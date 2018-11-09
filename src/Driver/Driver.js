@@ -7,7 +7,11 @@ class Driver {
     this._averageSpeed = 0;
     this._totalDistance = 0;
     this._trips = [];
-    this._isSpeedStale = true;
+    this._isSpeedStale = false;
+  }
+
+  getName() {
+    return this._name;
   }
 
   getTotalDistance() {

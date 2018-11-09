@@ -20,7 +20,7 @@ class Main {
 
   _addDriver(name) {
     if (this._drivers[name]) return false;
-    this._drivers[name] = new Driver();
+    this._drivers[name] = new Driver(name);
     return true;
   }
 

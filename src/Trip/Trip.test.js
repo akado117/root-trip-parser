@@ -82,4 +82,22 @@ describe('Trip Class', () => {
       expect(trip._duration).toEqual(45);
     });
   });
+  describe('getAverageSpeed', () => {
+    test('should calulate and return/store average speed', () => {
+      trip._duration = 60;
+      trip._distance = 60;
+
+      expect(trip.getAverageSpeed()).toEqual(60);
+      expect(trip._averageSpeed).toEqual(60);
+    });
+    test('should return already calculated averageSpeed', () => {
+      trip._duration = 60;
+      trip._distance = 60;
+
+      expect(trip.getAverageSpeed()).toEqual(60);
+      trip._distance = 160;
+      expect(trip.getAverageSpeed()).toEqual(60);
+      expect(trip._averageSpeed).toEqual(60);
+    });
+  });
 });

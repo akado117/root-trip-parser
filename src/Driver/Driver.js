@@ -25,6 +25,10 @@ class Driver {
     try {
       const trip = new Trip(startTime, endTime, distance);
 
+      const averageSpeed = trip.getAverageSpeed();
+
+      if (averageSpeed < 5 || averageSpeed > 100) return false;
+
       this._totalTime += trip.getDuration();
       this._totalDistance += trip.getDistance();
 

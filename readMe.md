@@ -38,3 +38,4 @@ App is brittle and will throw errors when encountering incorrect input data.
 - No reason to have getters for start/end time for Trip
 - Was going to do string manipulation and math to get duraction in trip, date objects should be more readable even if there's a performance hit
 - Breaking out parseCommand so it can call seperate functions within main from itself. `_addDriver` and `_addTripToDriver`
+- Added `getAverageSpeed` to `Trip`

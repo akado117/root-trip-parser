@@ -33,7 +33,15 @@ class Trip {
 
   getDistance() {
     return this._distance;
-  }  
+  }
+
+  getAverageSpeed() {
+    if (typeof this._averageSpeed === 'undefined') {
+      this._averageSpeed = this._distance / (this._duration / 60);
+    }
+
+    return this._averageSpeed;
+  }
 }
 
 module.exports = Trip;

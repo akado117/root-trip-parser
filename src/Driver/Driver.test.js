@@ -39,7 +39,7 @@ describe('Driver Class', () => {
   });
   describe('addTrip', () => {
     test('should return false and not add trip if trip failes to build', () => {
-      Trip.mockImplementation(() => { throw new Error('Huston, we have a problem'); });
+      Trip.mockImplementation(() => { throw new Error('Major Tom to ground control, we have a problem'); });
       expect(driver.addTrip('asdasd', '12:32', 123)).toEqual(false);
       expect(driver._trips.length).toEqual(0);
     });
@@ -47,6 +47,7 @@ describe('Driver Class', () => {
       Trip.mockImplementation(() => ({
         getDistance: jest.fn(() => 12),
         getDuration: jest.fn(() => 50),
+        getAverageSpeed: jest.fn(() => 10),
       }));
       
       expect(driver.addTrip('12:00', '12:30', 123)).toEqual(true);
@@ -56,6 +57,20 @@ describe('Driver Class', () => {
       expect(driver._trips[0].getDistance).toHaveBeenCalledTimes(1);
       expect(driver._totalTime).toEqual(50);
       expect(driver._totalDistance).toEqual(12);
+    });
+    test('should return false if average speed of trip is less than 5 or greater than 100 and should discard the trip', () => {
+      Trip.mockImplementation(() => ({
+        getAverageSpeed: jest.fn(() => 4),
+      }));
+
+      expect(driver.addTrip('12:00', '12:30', 123)).toEqual(false);
+
+      Trip.mockImplementation(() => ({
+        getAverageSpeed: jest.fn(() => 103),
+      }));
+
+      expect(driver.addTrip('12:00', '12:30', 123)).toEqual(false);
+      expect(driver._trips.length).toEqual(0)
     });
   });
   describe('calculateAverageSpeed', () => {

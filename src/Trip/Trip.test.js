@@ -1,4 +1,5 @@
 const Trip = require('./Trip');
+const { stubPrototype } = require('../helpers/testHelpers');
 
 describe('Trip Class', () => {
   let trip;
@@ -29,11 +30,9 @@ describe('Trip Class', () => {
       }
     });
     test('should call parseTime and save start/end time, duration, and distance to trip object', () => {
-      const parseTimeHolder = Trip.prototype._parseTime;
       // Modifying prototype can be dangerous. Try catch to make sure prototype is restored before test completed
+      const restoreFunc = stubPrototype(Trip, '_parseTime', () => 50);
       try {
-        Trip.prototype._parseTime = jest.fn(() => 50);
-        
         trip = new Trip('07:30', '08:30', 45);
 
         expect(trip._duration).toEqual(50);
@@ -41,9 +40,9 @@ describe('Trip Class', () => {
         expect(trip._endTime).toEqual('08:30');
         expect(trip._distance).toEqual(45);
         expect(trip._parseTime).toHaveBeenLastCalledWith('07:30', '08:30');        
-        Trip.prototype._parseTime = parseTimeHolder;
+        restoreFunc();
       } catch (e) {
-        Trip.prototype._parseTime = parseTimeHolder;
+        restoreFunc();
         throw new Error(e);
       }
     });

@@ -43,7 +43,7 @@ describe('DriverController class', () => {
     });
   });
   describe('_addDriver', () => {
-    test('should create a driver object and add to main._drivers keyed by driver name', () => {
+    test('should create a driver object and add to DriverController._drivers keyed by driver name', () => {
       expect(driverC._addDriver('Aslan')).toEqual(true);
 
       expect(driverC._drivers.Aslan).toBe(Driver.mock.instances[0]);

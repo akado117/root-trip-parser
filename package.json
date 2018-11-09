@@ -2,7 +2,7 @@
   "name": "root-trip-parser",
   "version": "1.0.0",
   "description": "A command line utility to parse a formatted input file into a consolidated output",
-  "main": "src/index.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest -o --watch",

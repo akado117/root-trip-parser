@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const Main = require('./src/Controllers');
+const DriverController = require('./src/Controllers/DriverController');
 
 const encoding = 'utf-8';
 
@@ -20,11 +20,11 @@ const splitFileRegex = new RegExp('\r\n|\r|\n', 'g');
 const fileLines = fileData.split(splitFileRegex);
 
 /* Parse file data */
-const main = new Main();
+const driverC = new DriverController();
 
 fileLines.forEach((fileLine, idx) => {
   try {
-    main.parseCommand(fileLine)
+    driverC.parseCommand(fileLine)
   } catch (e) {
     console.log(`Failed on line ${idx} with data: ${fileLine}`)
     throw new Error(e);
@@ -32,7 +32,7 @@ fileLines.forEach((fileLine, idx) => {
 })
 
 /* Report after parsing */
-const consolidatedDrivers = main.getDrivers().sort((a,b) => {
+const consolidatedDrivers = driverC.getDrivers().sort((a,b) => {
   return a.getTotalDistance() > b.getTotalDistance() ? -1 : 1;
 })
 

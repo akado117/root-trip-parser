@@ -18,8 +18,8 @@ class Trip {
   }
 
   _calculateDuration(start, end) {
-    const startTime = new Date(partialDateString + start);
-    const endTime = new Date(partialDateString + end);
+    const startTime = Date.parse(partialDateString + start);
+    const endTime = Date.parse(partialDateString + end);
     
     const msOfDuration = endTime - startTime;
     

@@ -9,13 +9,15 @@ class Trip {
       throw new Error('Please use valid arguments: \\d\\d:\\d\\d, \\d\\d:\\d\\d, number');
     }
 
-    this._duration = this._parseTime(start, end);
+    this._duration = this._calculateDuration(start, end);
     this._startTime = start;
     this._endTime = end;
     this._distance = parseFloat(distance);
+    // mile / minutes * hours/minute
+    this._averageSpeed = this._distance / this._duration * 60 || 0;
   }
 
-  _parseTime(start, end) {
+  _calculateDuration(start, end) {
     const startTime = new Date(partialDateString + start);
     const endTime = new Date(partialDateString + end);
     
@@ -36,10 +38,6 @@ class Trip {
   }
 
   getAverageSpeed() {
-    if (typeof this._averageSpeed === 'undefined') {
-      this._averageSpeed = this._distance / (this._duration / 60);
-    }
-
     return this._averageSpeed;
   }
 }

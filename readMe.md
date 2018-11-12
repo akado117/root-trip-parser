@@ -56,7 +56,7 @@ Building the solution with objects to make code more organized. Will all run wit
 ### Updates While Implementing
 - Adding validation for correct constructor arguments when creating Trips
 - No reason to have getters for start/end time for Trip
-- Was going to do string manipulation and math to get duraction in trip, date objects should be more readable even if there's a performance hit
+- Was going to do string manipulation and math to get duration in trip, date objects should be more readable even if there's a performance hit
 - Breaking out parseCommand so it can call seperate functions within main from itself. `_addDriver` and `_addTripToDriver`
 - Added `getAverageSpeed` to `Trip`
 - Removing calculateAverageSpeed and combining with getAverageSpeed
